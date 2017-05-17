@@ -1,6 +1,5 @@
 package com.test.shoppingcart
 
-
 import org.junit
 
 /**

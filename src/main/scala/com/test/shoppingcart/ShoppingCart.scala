@@ -7,9 +7,9 @@ class ShoppingCart {
 
 
   def checkout(items : Array[String]): Double = {
-
-    lazy val countApple = items.filter(apple => apple.equalsIgnoreCase("Apple")).length
-    lazy  val countOrange = items.filter(orange => orange.equalsIgnoreCase("Orange")).length
-    countApple*0.6 + countOrange*0.25
+    val priceList: Map[String, Double] = Map(("apple", 0.60), ("orange", 0.25))
+    lazy val countApple :Int = items.filter(apple => apple.equalsIgnoreCase("Apple")).length
+    lazy val countOrange :Int = items.filter(orange => orange.equalsIgnoreCase("Orange")).length
+    countApple*priceList.getOrElse("apple",0.0) + countOrange*priceList.getOrElse("orange",0.0);
   }
 }

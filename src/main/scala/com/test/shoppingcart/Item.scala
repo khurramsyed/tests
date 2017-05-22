@@ -5,10 +5,13 @@ package com.test.shoppingcart
   */
 class Item {
    var name: String = ""
-   var price: Double = 0.0
-   var offer: Offer = null
+   var price: Money =_
+   var offer:  (Int , Money) => Money = noOffer
 
-  def this(name: String, price: Double, theOffer: Offer) {
+
+  def noOffer(totalItems: Int, price: Money): Money = { new Money (price.getCurrency,totalItems * price.getAmount) }
+
+  def this(name: String, price: Money =new Money("£",0.0), theOffer: (Int , Money) => Money) {
     this()
     this.name = name
     this.price = price

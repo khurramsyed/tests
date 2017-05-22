@@ -1,6 +1,6 @@
 package com.test.shoppingcart
 
-import junit.framework.Assert._
+import org.junit.Assert._
 import org.junit
 
 
@@ -15,18 +15,19 @@ class PricingServiceTest{
 
   @junit.Test
   def testPriceOfApple() ={
-    assertTrue(PricingService.itemDetails("Apple").offer== BuyOneGetOneFree)
-    assertTrue(PricingService.itemDetails("Apple").offer== BuyOneGetOneFree)
+    assertTrue(PricingService.getTotalPrice("Apple",1).amount ==0.6)
+    assertTrue(PricingService.getTotalPrice("Apple",2).amount==0.6)
   }
 
   @junit.Test
   def testPriceOfOrange()= {
-    assertTrue(PricingService.itemDetails("Orange").offer== ThreeForTwo)
+    assertTrue(PricingService.getTotalPrice("orange",2).amount==0.5)
+    assertTrue(PricingService.getTotalPrice("orange",3).amount==0.5)
   }
 
   @junit.Test
   def testPriceOfSomethingElseIsZero() = {
-    assert(PricingService.itemDetails("Banana").offer == NoOffer)
+    assert(PricingService.getTotalPrice("Banana",10).amount==0.0)
   }
 
 }
